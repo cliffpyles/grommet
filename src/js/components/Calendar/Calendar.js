@@ -91,6 +91,7 @@ const Calendar = forwardRef(
       dates: datesProp,
       daysOfWeek,
       disabled,
+      fill,
       firstDayOfWeek = 0,
       header,
       locale = 'en-US',
@@ -447,7 +448,7 @@ const Calendar = forwardRef(
     weeks.push(<StyledWeek key={day.getTime()}>{days}</StyledWeek>);
 
     return (
-      <StyledCalendar ref={ref} sizeProp={size} {...rest}>
+      <StyledCalendar ref={ref} sizeProp={size} fillContainer={fill} {...rest}>
         <Box>
           {header
             ? header({

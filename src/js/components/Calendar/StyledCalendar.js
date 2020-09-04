@@ -17,9 +17,20 @@ const sizeStyle = props => {
   `;
 };
 
+const fillStyle = fillContainer => {
+  if (fillContainer) {
+    return `
+      width: 100%;
+      height: 100%;
+    `;
+  }
+  return undefined;
+};
+
 const StyledCalendar = styled.div`
   ${genericStyles}
   ${props => sizeStyle(props)}
+  ${props => props.fillContainer && fillStyle(props.fillContainer)}
   ${props => props.theme.calendar && props.theme.calendar.extend}
 `;
 
@@ -78,8 +89,14 @@ const StyledWeek = styled.div`
 StyledWeek.defaultProps = {};
 Object.setPrototypeOf(StyledWeek.defaultProps, defaultProps);
 
+const dayContainerFlexStyle = props => {
+  const baseWidth = props?.fillContainer ? `${100 / 7}%` : 'auto';
+  return css`
+    flex: 0 0 ${baseWidth};
+  `;
+};
 const StyledDayContainer = styled.div`
-  flex: 0 0 auto;
+  ${dayContainerFlexStyle}
 `;
 
 StyledDayContainer.defaultProps = {};
